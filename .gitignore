@@ -1,0 +1,21 @@
+# Виртуальное окружение
+venv/
+env/
+
+# Кэш интерпретатора
+__pycache__/
+*.pyc
+
+# Логи и тесты
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Файлы IDE (например, VS Code)
+.idea/
+.vscode/
+
+# Другие временные файлы
+*.log
+*.swp
+*.swo
