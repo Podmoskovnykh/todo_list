@@ -81,7 +81,7 @@ class TaskManagerApp:
             if task.completed:
                 self.task_listbox.itemconfig(tk.END, {'fg': 'green'})
             else:
-                self.task_listbox.itemconfig(tk.END, {'fg': 'black'})
+                self.task_listbox.itemconfig(tk.END, {'fg': 'red'})  # ← Теперь красный для невыполненных
 
 
 if __name__ == "__main__":
