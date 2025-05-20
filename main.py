@@ -6,6 +6,7 @@ class Task:
         self.description = description
         self.completed = completed
 
+
 class TaskManagerApp:
     def __init__(self, root):
         self.tasks = []
@@ -27,8 +28,9 @@ class TaskManagerApp:
         self.delete_button = tk.Button(root, text="Удалить задачу", command=self.delete_task)
         self.delete_button.pack(pady=5)
 
-        self.complete_button = tk.Button(root, text="Задача выполнена", command=self.mark_task_completed)
-        self.complete_button.pack(pady=5)
+        # Кнопка для переключения статуса задачи
+        self.toggle_button = tk.Button(root, text="Изменить статус задачи", command=self.toggle_task_status)
+        self.toggle_button.pack(pady=5)
 
         self.update_task_listbox()
 
@@ -62,13 +64,14 @@ class TaskManagerApp:
         else:
             messagebox.showwarning("Предупреждение", "Выберите задачу для редактирования.")
 
-    def mark_task_completed(self):
+    def toggle_task_status(self):
         selected_task_index = self.task_listbox.curselection()
         if selected_task_index:
-            self.tasks[selected_task_index[0]].completed = True
+            task = self.tasks[selected_task_index[0]]
+            task.completed = not task.completed
             self.update_task_listbox()
         else:
-            messagebox.showwarning("Предупреждение", "Выберите задачу для пометки как выполненной.")
+            messagebox.showwarning("Предупреждение", "Выберите задачу для изменения статуса.")
 
     def update_task_listbox(self):
         self.task_listbox.delete(0, tk.END)
@@ -79,6 +82,7 @@ class TaskManagerApp:
                 self.task_listbox.itemconfig(tk.END, {'fg': 'green'})
             else:
                 self.task_listbox.itemconfig(tk.END, {'fg': 'black'})
+
 
 if __name__ == "__main__":
     root = tk.Tk()
